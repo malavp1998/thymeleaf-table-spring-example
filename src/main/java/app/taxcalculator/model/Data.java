@@ -7,6 +7,7 @@ public class Data {
     private int item_type;
     private boolean isTaxCalculate;
     private double tax;
+
     public Data(int s_no, int amount, int item_type) {
         this.s_no = s_no;
         this.amount = amount;
