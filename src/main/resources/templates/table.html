@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Tax Calculator System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container ">
+        <div>
+            <h2>Tax Calculator</h2>
+        </div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 25%" scope="col">SNO</th>
+            <th style="width: 25%" scope="col">Amount</th>
+            <th style="width: 25%" scope="col">Item Type</th>
+            <th style="width: 25%" scope="col">Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data : ${dataList}">
+            <td><span th:text="${data.s_no}">  </span></td>
+            <td><span th:text="${data.amount}">  </span></td>
+            <td><span th:text="${data.item_type}">  </span></td>
+            <td>
+                       <span>
+                          <div th:if="${data.isTaxCalculate}">
+                           <span th:text="${data.tax}">  </span>
+                          </div>
+                         <div th:unless="${data.isTaxCalculate}">
+                            <a th:href="@{/calculateTax/{sno}(sno=${data.s_no})}" class="btn btn-primary btn-sm">Calculate Tax</a>
+                         </div>
+                      </span>
+
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
