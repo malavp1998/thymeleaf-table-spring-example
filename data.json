@@ -44,6 +44,21 @@
       "sno": 9,
       "amount": 390,
       "item_type": 2
+    },
+    {
+      "sno": 10,
+      "amount": 230,
+      "item_type": 3
+    },
+    {
+      "sno": 11,
+      "amount": 1010,
+      "item_type": 2
+    },
+    {
+      "sno": 12,
+      "amount": 3980,
+      "item_type": 2
     }
   ]
 }

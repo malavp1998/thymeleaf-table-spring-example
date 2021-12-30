@@ -1,6 +1,7 @@
 package app.taxcalculator;
 
 import app.taxcalculator.model.Data;
+import app.taxcalculator.service.DataService;
 import app.taxcalculator.service.impl.DataServiceImpl;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,37 +25,19 @@ public class TaxcalculatorApplication implements CommandLineRunner {
     }
 
     @Autowired
-    DataServiceImpl dataServiceImpl;
+    DataService dataService;
+
+    public TaxcalculatorApplication(DataService dataService) {
+        this.dataService = dataService;
+    }
 
     @Override
     public void run(String... args) throws Exception {
         //	DataServiceImpl dataServiceImpl = new DataServiceImpl();// By doing this I was not getting data in output when I was calling using controller
-
         // Reading data from json file and storing it into the dataArrayList
-        try {
-            JSONParser jsonParser = new JSONParser();
-            FileReader reader = new FileReader("/Users/rmalav/IdeaProjects/taxcalculator/data.json");
-            Object obj = jsonParser.parse(reader);
+        String file_name = "data.json";
+        dataService.readDatafromJsonFile(file_name);
 
-            JSONObject dataObj = (JSONObject) obj;
 
-            JSONArray jsonArray = (JSONArray) dataObj.get("invoices");
-
-            System.out.println(jsonArray);
-            ArrayList<Data> dataList = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject innerObj = (JSONObject) jsonArray.get(i);
-                Data data = new Data(Integer.parseInt(innerObj.get("sno").toString()), Integer.parseInt(innerObj.get("amount").toString()), Integer.parseInt(innerObj.get("item_type").toString()));
-                dataList.add(data);
-            }
-            dataServiceImpl.readDatafromJsonFile(dataList);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 }
