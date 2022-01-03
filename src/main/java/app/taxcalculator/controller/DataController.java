@@ -2,6 +2,7 @@ package app.taxcalculator.controller;
 
 import app.taxcalculator.model.Data;
 import app.taxcalculator.service.DataService;
+import app.taxcalculator.service.impl.DataServiceArrayListImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class DataController {
 
-    @Qualifier("dataServiceMapImpl")
+
     @Autowired
-    DataService dataService;
+    private DataService dataService;
 
     @GetMapping("/")
     public String showhHomePage(Model model) {
