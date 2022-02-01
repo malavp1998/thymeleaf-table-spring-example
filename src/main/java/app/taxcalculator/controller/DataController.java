@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DataController {
 
 
-    @Autowired
-    private DataService dataService;
+    private final DataService dataService;
+
+    public DataController(DataService dataService) {
+        this.dataService = dataService;
+    }
 
     @GetMapping("/")
     public String showhHomePage(Model model) {

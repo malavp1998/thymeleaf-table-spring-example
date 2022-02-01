@@ -1,5 +1,6 @@
 package app.taxcalculator;
 
+import app.taxcalculator.controller.DataController;
 import app.taxcalculator.service.DataService;
 import app.taxcalculator.service.impl.DataServiceArrayListImpl;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,13 @@ public class TextCalculatorApplicationConfiguration {
         dataService.readDatafromJsonFile(FILE_NAME);
         return dataService;
     }
+
+    @Bean
+    DataController getDataController()
+    {
+        return new DataController(getDataService());
+    }
+
 
 
 }
